@@ -43,6 +43,7 @@
             border: none;
             border-radius: 5px;
             cursor: pointer;
+            font-family: Arial, sans-serif;
         }
         #refresh-btn:hover {
             background-color: #d35400;
@@ -88,7 +89,7 @@
                 const btcRate = parseFloat(data.data.rates.BTC);
                 const priceInUSD = Math.round(1 / btcRate);
                 const formattedPrice = priceInUSD.toLocaleString('en-US');
-		lastPrice = formattedPrice;
+                lastPrice = formattedPrice;
 
                 // Update UI and title
                 loadingElement.style.display = 'none';
