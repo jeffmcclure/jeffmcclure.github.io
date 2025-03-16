@@ -69,7 +69,7 @@
 </head>
 <body>
     <div id="price-container">
-        v2
+        v4
         <div id="loading">Loading Bitcoin Price...</div>
         <div id="price" style="display: none;"></div>
         <div id="error" style="display: none;">Failed to load price.</div>
@@ -150,10 +150,18 @@
         document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'visible') {
                 timerElement.textContent = 'visible now';
-                fetchBitcoinPrice();
+                forceRedraw();
+                // fetchBitcoinPrice();
                 // setTimeout(() => {
                 //     window.location.reload();
                 // }, 100);
+            }
+        });
+
+        // For iOS standalone mode, also use pageshow
+        window.addEventListener('pageshow', (event) => {
+            if (!event.persisted) { // Not from cache
+                forceRedraw();
             }
         });
     </script>
