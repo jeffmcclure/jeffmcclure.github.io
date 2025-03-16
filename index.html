@@ -69,7 +69,7 @@
 </head>
 <body>
     <div id="price-container">
-        v6
+        v7
         <div id="loading">Loading Bitcoin Price...</div>
         <div id="price" style="display: none;"></div>
         <div id="error" style="display: none;">Failed to load price.</div>
@@ -142,11 +142,11 @@
         refreshBtn.addEventListener('click', fetchBitcoinPrice);
 
         function forceRedraw() {
-            window.location.reload();
-            // document.body.style.display = 'none';
-            // document.body.offsetHeight; // Trigger reflow
-            // document.body.style.display = '';
-            // fetchBitcoinPrice();
+            // window.location.reload();
+            document.body.style.display = 'none';
+            document.body.offsetHeight; // Trigger reflow
+            document.body.style.display = '';
+            fetchBitcoinPrice();
         }
 
         // Listen for visibility changes
