@@ -85,7 +85,7 @@
         const timerElement = document.getElementById('timer');
         let secondsSinceRefresh = 0;
         let timerInterval = null;
-	let lastPrice = '';
+        let lastPrice = '';
 
         async function fetchBitcoinPrice() {
             loadingElement.style.display = 'block';
@@ -145,8 +145,10 @@
             document.body.style.display = 'none';
             document.body.offsetHeight; // Trigger reflow
             document.body.style.display = '';
+            fetchBitcoinPrice();
         }
 
+        // Listen for visibility changes
         document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'visible') {
                 timerElement.textContent = 'visible now';
