@@ -142,10 +142,11 @@
         refreshBtn.addEventListener('click', fetchBitcoinPrice);
 
         function forceRedraw() {
-            document.body.style.display = 'none';
-            document.body.offsetHeight; // Trigger reflow
-            document.body.style.display = '';
-            fetchBitcoinPrice();
+            window.location.reload();
+            // document.body.style.display = 'none';
+            // document.body.offsetHeight; // Trigger reflow
+            // document.body.style.display = '';
+            // fetchBitcoinPrice();
         }
 
         // Listen for visibility changes
@@ -162,7 +163,9 @@
 
         // For iOS standalone mode, also use pageshow
         window.addEventListener('pageshow', (event) => {
+            timerElement.textContent = 'visible now 2';
             if (!event.persisted) { // Not from cache
+                timerElement.textContent = 'visible now 3';
                 forceRedraw();
             }
         });
