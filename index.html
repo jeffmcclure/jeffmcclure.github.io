@@ -148,7 +148,8 @@
 
         document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'visible') {
-                forceRedraw();
+                timerElement.textContent = 'visible now';
+                window.location.reload();
             }
         });
     </script>
