@@ -65,9 +65,19 @@
             font-size: 1.2rem;
             color: #555;
         }
+        .status-bar-cover {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 44px; /* Typical iOS status bar height, adjust if needed */
+            background-color: #000000; /* Solid black to hide the time */
+            z-index: 1000; /* Ensure it’s on top */
+        }
     </style>
 </head>
 <body>
+    <div class="status-bar-cover"></div>
     <div id="price-container">
         <div id="loading">Loading Bitcoin Price...</div>
         <div id="price" style="display: none;"></div>
