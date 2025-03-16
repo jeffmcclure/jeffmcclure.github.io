@@ -69,7 +69,7 @@
 </head>
 <body>
     <div id="price-container">
-        v8
+        v9
         <div id="loading">Loading Bitcoin Price...</div>
         <div id="price" style="display: none;"></div>
         <div id="error" style="display: none;">Failed to load price.</div>
@@ -156,6 +156,7 @@
             if (document.visibilityState === 'visible') {
                 timerElement.textContent = 'visible now';
                 forceRedraw();
+                forceRedraw();
                 // fetchBitcoinPrice();
                 // setTimeout(() => {
                 //     window.location.reload();
@@ -168,6 +169,7 @@
             timerElement.textContent = 'visible now 2';
             if (!event.persisted) { // Not from cache
                 timerElement.textContent = 'visible now 3';
+                forceRedraw();
                 forceRedraw();
             }
         });
