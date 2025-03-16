@@ -149,7 +149,9 @@
         document.addEventListener('visibilitychange', () => {
             if (document.visibilityState === 'visible') {
                 timerElement.textContent = 'visible now';
-                window.location.reload();
+                setTimeout(() => {
+                    window.location.reload();
+                }, 100);
             }
         });
     </script>
