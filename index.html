@@ -71,7 +71,7 @@
         #timer {
             margin-top: 10px;
             font-size: 1.2rem;
-            color: #b6b6b6;
+            color: #909090;
         }
 
         #bottom {
@@ -93,11 +93,11 @@
     <div id="price" style="display: none;"></div>
     <div id="error" style="display: none;">Failed to load price.</div>
 </div>
-<div id="timer">Last refreshed: 0 seconds ago</div>
+<div id="timer"></div>
 <!--<button id="refresh-btn" style="display: inline-block;">Refresh</button>-->
 <div id="bottom">
 <div id="status"></div>
-<div id="version">v16</div>
+<div id="version">v17</div>
 </div>
 
 <script>
@@ -166,12 +166,16 @@
 
     function resetTimer() {
         secondsSinceRefresh = 0;
-        timerElement.textContent = `${secondsSinceRefresh} seconds ago`;
+        timerElement.textContent = '0 seconds';
         document.title = `${lastPrice} (${secondsSinceRefresh} sec)`;
         if (timerInterval) clearInterval(timerInterval);
         timerInterval = setInterval(() => {
             secondsSinceRefresh++;
-            timerElement.textContent = `Last refreshed: ${secondsSinceRefresh} seconds ago`;
+            if (secondsSinceRefresh == 1) {
+                timerElement.textContent = '1 second';
+            } else {
+                timerElement.textContent = `${secondsSinceRefresh} seconds`;
+            }
             document.title = `${lastPrice} (${secondsSinceRefresh} sec)`;
         }, 1000);
     }
