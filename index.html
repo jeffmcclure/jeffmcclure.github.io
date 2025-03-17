@@ -7,7 +7,7 @@
     <link rel="manifest" href="/manifest.json">
     <meta name="apple-mobile-web-app-capable" content="yes">
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-    <link rel="apple-touch-icon" sizes="180x180" href="/icon-180x180.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="/icon-512x512.png">
     <style>
         html, body {
             margin: 0;
@@ -77,7 +77,11 @@
             color: #282828;
             position: fixed;
             bottom: 10px;
-            right: 10px;
+
+            /*right: 10px;*/
+
+            left: 50%;
+            transform: translateX(-50%);
         }
     </style>
 </head>
@@ -89,7 +93,7 @@
 </div>
 <div id="timer">Last refreshed: 0 seconds ago</div>
 <!--<button id="refresh-btn" style="display: inline-block;">Refresh</button>-->
-<div id="version">v12</div>
+<div id="version">v13</div>
 
 <script>
     const priceElement = document.getElementById('price');
