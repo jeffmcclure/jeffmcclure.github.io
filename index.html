@@ -97,7 +97,7 @@
 <!--<button id="refresh-btn" style="display: inline-block;">Refresh</button>-->
 <div id="bottom">
 <div id="status"></div>
-<div id="version">v17</div>
+<div id="version">v18</div>
 </div>
 
 <script>
@@ -187,6 +187,7 @@
 
     window.onload = startAutoRefresh;
     // refreshBtn.addEventListener('click', fetchBitcoinPrice);
+    priceElement.addEventListener('click', fetchBitcoinPrice);
 
     function forceRedraw() {
         // window.location.reload();
