@@ -29,14 +29,21 @@
         }
 
         #price-container {
+            position: absolute; /* or 'fixed' depending on behavior */
+            top: 0px; /* Align to the top */
+            /*vertical-align: top;*/
             text-align: center;
             width: 100%;
             padding: 0;
             margin: 0;
             color: #333;
+            /*border: 1px solid yellow;*/
         }
 
         #price {
+            /*top: 0; !* Align to the top *!*/
+            /*position: absolute; !* or 'fixed' depending on behavior *!*/
+            /*border: 1px solid red;*/
             color: #fa6610;
             font-weight: bold;
             font-size: 25vw;
@@ -47,29 +54,8 @@
             box-sizing: border-box;
         }
 
-        #loading, #error {
-            font-size: 2rem;
-            color: #666;
-        }
-
-        #refresh-btn {
-            margin-top: 20px;
-            padding: 10px 20px;
-            font-size: 1.5rem;
-            background-color: #fa6610;
-            color: white;
-            border: none;
-            border-radius: 5px;
-            cursor: pointer;
-            font-family: Arial, sans-serif;
-        }
-
-        #refresh-btn:hover {
-            background-color: #fa2f10;
-        }
-
         #timer {
-            margin-top: 10px;
+            margin-top: 20px;
             font-size: 1.2rem;
             color: #909090;
         }
@@ -89,20 +75,18 @@
 </head>
 <body>
 <div id="price-container">
-    <div id="loading">Loading Bitcoin Price...</div>
     <div id="price" style="display: none;"></div>
     <div id="error" style="display: none;">Failed to load price.</div>
+    <div id="timer"></div>
 </div>
-<div id="timer"></div>
-<!--<button id="refresh-btn" style="display: inline-block;">Refresh</button>-->
 <div id="bottom">
-<div id="status"></div>
-<div id="version">v18</div>
+    <div id="status"></div>
+    <div id="version">v19</div>
 </div>
 
 <script>
     const priceElement = document.getElementById('price');
-    const loadingElement = document.getElementById('loading');
+    // const loadingElement = document.getElementById('loading');
     const statusElement = document.getElementById('status');
     const errorElement = document.getElementById('error');
     // const refreshBtn = document.getElementById('refresh-btn');
@@ -145,7 +129,7 @@
             lastPrice = formattedPrice;
 
             // Update UI and title
-            loadingElement.style.display = 'none';
+            // loadingElement.style.display = 'none';
             priceElement.style.display = 'block';
             priceElement.textContent = `${formattedPrice}`;
             document.title = `${formattedPrice}`;
@@ -156,7 +140,7 @@
             priceElement.textContent = 'error...'
             console.error('Error fetching Bitcoin price:', error);
             alert('Error fetching Bitcoin price:');
-            loadingElement.style.display = 'none';
+            // loadingElement.style.display = 'none';
             errorElement.style.display = 'block';
             document.title = 'Error - Bitcoin Price';
             // refreshBtn.style.display = 'block';
