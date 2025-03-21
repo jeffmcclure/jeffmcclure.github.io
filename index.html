@@ -151,7 +151,7 @@
     function resetTimer() {
         secondsSinceRefresh = 0;
         timerElement.textContent = '0 seconds';
-        document.title = `${lastPrice} (${secondsSinceRefresh} sec)`;
+        document.title = `${lastPrice} (${secondsSinceRefresh}s)`;
         if (timerInterval) clearInterval(timerInterval);
         timerInterval = setInterval(() => {
             secondsSinceRefresh++;
@@ -160,7 +160,7 @@
             } else {
                 timerElement.textContent = `${secondsSinceRefresh} seconds`;
             }
-            document.title = `${lastPrice} (${secondsSinceRefresh} sec)`;
+            document.title = `${lastPrice} (${secondsSinceRefresh}s)`;
         }, 1000);
     }
 
