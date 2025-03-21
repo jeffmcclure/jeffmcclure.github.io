@@ -80,16 +80,14 @@
     <div id="timer"></div>
 </div>
 <div id="bottom">
-    <div id="status"></div>
-    <div id="version">v19</div>
+<!--    <div id="status"></div>-->
+    <div id="version">v20</div>
 </div>
 
 <script>
     const priceElement = document.getElementById('price');
-    // const loadingElement = document.getElementById('loading');
-    const statusElement = document.getElementById('status');
+    // const statusElement = document.getElementById('status');
     const errorElement = document.getElementById('error');
-    // const refreshBtn = document.getElementById('refresh-btn');
     const timerElement = document.getElementById('timer');
     let secondsSinceRefresh = 0;
     let timerInterval = null;
@@ -101,27 +99,28 @@
             return
         }
 
+        if (timerInterval) clearInterval(timerInterval);
+
         setTimeout(() => {
             fetchBitcoinPrice();
         }, 1000);
 
-        // loadingElement.style.display = 'block';
         priceElement.style.display = 'none';
         errorElement.style.display = 'none';
-        // refreshBtn.style.display = 'none';
         document.title = 'Bitcoin Price'; // Reset title during loading
 
         try {
             priceElement.style.display = 'block';
-            statusElement.textContent = 'loading3...';
+            // statusElement.textContent = 'loading...';
+            timerElement.textContent = 'loading...';
             const response = await fetch('https://api.coinbase.com/v2/exchange-rates?currency=USD');
             updatedEpochTime = Date.now();
 
-            statusElement.textContent = 'loading4...';
+            // statusElement.textContent = 'loading4...';
             if (!response.ok) throw new Error('Network response was not ok');
-            statusElement.textContent = 'loading5...';
+            // statusElement.textContent = 'loading5...';
             const data = await response.json();
-            statusElement.textContent = 'loading6...';
+            // statusElement.textContent = 'loading6...';
 
             const btcRate = parseFloat(data.data.rates.BTC);
             const priceInUSD = Math.round(1 / btcRate);
@@ -129,21 +128,17 @@
             lastPrice = formattedPrice;
 
             // Update UI and title
-            // loadingElement.style.display = 'none';
             priceElement.style.display = 'block';
             priceElement.textContent = `${formattedPrice}`;
             document.title = `${formattedPrice}`;
-            // refreshBtn.style.display = 'block';
-            statusElement.textContent = '';
+            // statusElement.textContent = '';
             resetTimer();
         } catch (error) {
             priceElement.textContent = 'error...'
             console.error('Error fetching Bitcoin price:', error);
             alert('Error fetching Bitcoin price:');
-            // loadingElement.style.display = 'none';
             errorElement.style.display = 'block';
             document.title = 'Error - Bitcoin Price';
-            // refreshBtn.style.display = 'block';
             resetTimer();
         }
     }
@@ -170,38 +165,34 @@
     }
 
     window.onload = startAutoRefresh;
-    // refreshBtn.addEventListener('click', fetchBitcoinPrice);
     priceElement.addEventListener('click', fetchBitcoinPrice);
 
     function forceRedraw() {
-        // window.location.reload();
         priceElement.style.display = 'block';
         priceElement.textContent = 'loading2...'
-        // loadingElement.textContent = 'loading4';
         document.body.style.transform = 'scale(1)'; // Trigger reflow
         document.body.style.display = 'none';
         document.body.offsetHeight; // Trigger reflow
         document.body.style.transform = ''; // Reset
         document.body.style.display = '';
-        setTimeout(() => {
+        // setTimeout(() => {
             fetchBitcoinPrice();
-            // window.location.reload();
-        }, 100);
+        // }, 10);
     }
 
     // Listen for visibility changes
     document.addEventListener('visibilitychange', () => {
         if (document.visibilityState === 'visible') {
-            timerElement.textContent = 'loading1...';
-            forceRedraw();
+            // forceRedraw();
+            fetchBitcoinPrice();
         }
     });
 
     // For iOS standalone mode, also use pageshow
     window.addEventListener('pageshow', (event) => {
-        timerElement.textContent = 'visible now 2';
+        // timerElement.textContent = 'visible now 2';
         if (!event.persisted) { // Not from cache
-            timerElement.textContent = 'loading2...';
+            // timerElement.textContent = 'loading2...';
             forceRedraw();
         }
     });
